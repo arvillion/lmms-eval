@@ -18,7 +18,6 @@ doc_to_visual: !function utils.temporal_grounding_doc_to_visual
 doc_to_text: !function utils.temporal_grounding_doc_to_text
 doc_to_target: !function utils.temporal_grounding_doc_to_target
 process_results: !function utils.temporal_grounding_process_results_generation
-process_docs: !function utils.temporal_grounding_process_docs
 
 metric_list:
   - metric: submission

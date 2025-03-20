@@ -32,21 +32,21 @@ cache_dir = os.path.join(base_cache_dir, cache_name)
 # video_dir = video_dir if os.path.isabs(video_dir) else os.path.join(cache_dir, video_dir)
 video_dir = os.path.join(cache_dir, "videos")
 
-def temporal_grounding_process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
-    # Before entering the evaluation loop, check if all video files exist
-    eval_logger.info("Checking for missing video files")
-    has_missing_files = False
-    for i, doc in enumerate(dataset):
-        video_filename = doc["video"]
-        video_path = os.path.join(video_dir, video_filename)
-        if not os.path.exists(video_path):
-            eval_logger.error(f"Missing video file: {video_path}")
-            has_missing_files = True
+# def temporal_grounding_process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
+#     # Before entering the evaluation loop, check if all video files exist
+#     eval_logger.info("Checking for missing video files")
+#     has_missing_files = False
+#     for i, doc in enumerate(dataset):
+#         video_filename = doc["video"]
+#         video_path = os.path.join(video_dir, video_filename)
+#         if not os.path.exists(video_path):
+#             eval_logger.error(f"Missing video file: {video_path}")
+#             has_missing_files = True
     
-    if has_missing_files:
-        sys.exit("Cannot proceed evaluation due to missing video files. Please check the logs above.")
-    else:
-        eval_logger.info("All video files are present. Continue evaluation.")
+#     if has_missing_files:
+#         sys.exit("Cannot proceed evaluation due to missing video files. Please check the logs above.")
+#     else:
+#         eval_logger.info("All video files are present. Continue evaluation.")
 
 
 def temporal_grounding_doc_to_visual(doc, lmms_eval_specific_kwargs=None):
