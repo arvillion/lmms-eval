@@ -1,8 +1,10 @@
-dataset_path: lmms_eval/tasks/activitynet_tvg
+dataset_path: arvill/activitynet_tvg
 dataset_kwargs:
-  cache_name: activitynet_tvg
-  video_dir: videos
+  token: True
+  cache_dir: activitynet_tvg
+  video: True
 task: temporal_grounding_activitynet
+test_split: val_2
 
 generation_kwargs:
   max_new_tokens: 50
@@ -16,7 +18,7 @@ doc_to_visual: !function utils.temporal_grounding_doc_to_visual
 doc_to_text: !function utils.temporal_grounding_doc_to_text
 doc_to_target: !function utils.temporal_grounding_doc_to_target
 process_results: !function utils.temporal_grounding_process_results_generation
-
+process_docs: !function utils.temporal_grounding_process_docs
 
 metric_list:
   - metric: submission

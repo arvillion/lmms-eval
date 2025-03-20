@@ -24,14 +24,15 @@ with open(Path(__file__).parent / "activitynet_tvg.yaml", "r") as f:
             safe_data.append(line)
 
 dataset_kwargs = yaml.safe_load("".join(safe_data))["dataset_kwargs"]
-cache_name = dataset_kwargs["cache_name"]
+cache_name = dataset_kwargs["cache_dir"]
 cache_dir = os.path.join(base_cache_dir, cache_name)
 
 # video_dir can be a relative path or an absolute path
-video_dir = dataset_kwargs["video_dir"]
-video_dir = video_dir if os.path.isabs(video_dir) else os.path.join(cache_dir, video_dir)
+# video_dir = dataset_kwargs["video_dir"]
+# video_dir = video_dir if os.path.isabs(video_dir) else os.path.join(cache_dir, video_dir)
+video_dir = os.path.join(cache_dir, "videos")
 
-def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
+def temporal_grounding_process_docs(dataset: datasets.Dataset) -> datasets.Dataset:
     # Before entering the evaluation loop, check if all video files exist
     eval_logger.info("Checking for missing video files")
     has_missing_files = False
